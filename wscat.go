@@ -19,7 +19,7 @@ func ws_in(ws *websocket.Conn) {
 
 		s := string(msg)
 
-		log.Println("Recv:" + s)
+		//log.Println("Recv:" + s)
 
 		if n != 0 {
 
@@ -45,13 +45,13 @@ func main() {
 	urli := os.Args[1]
 
 	if len(os.Args) == 2 {
-		origin = ""
+		//origin = ""
 	} else {
 		origin = os.Args[2]
 	}
 
 	log.Println("Connecting to " + urli)
-	
+
 	ws, err := websocket.Dial(urli, "", origin)
 
 	if err != nil {
@@ -68,14 +68,14 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Println("Sending:" + so)
+		//log.Println("Sending:" + so)
 		ws.Write([]byte(so))
 
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		log.Println("Sent:" + so)
+		//log.Println("Sent:" + so)
 	}
 
 }
