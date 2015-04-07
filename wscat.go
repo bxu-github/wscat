@@ -7,7 +7,7 @@ import "log"
 
 func ws_in(ws *websocket.Conn) {
 	var msg = make([]byte, 65536)
-	for 1 {
+	for true {
 		n, err := ws.Read(msg)
 		if err != nil {
 			log.Fatal(err)
@@ -43,7 +43,7 @@ func main() {
 
 	go ws_in(ws)
 
-	for 1 {
+	for true {
 		var so string
 		_, err = fmt.Sscanln(so)
 
