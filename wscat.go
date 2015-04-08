@@ -9,23 +9,23 @@ import "strings"
 
 func ws_in(ws *websocket.Conn) {
 
-	var msg = make([]byte, 65536)
+	var msg string
 
 	for true {
 
-		n, err := ws.Read(msg)
+		err := websocket.Message.Receive(ws,&msg)
 
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		s := string(msg)
+		//s := msg
 
 		//log.Println("Recv:" + s)
 
-		if n != 0 {
+		if len(msg) != 0 {
 
-			fmt.Println(s)
+			fmt.Println(msg)
 
 		} else {
 
@@ -44,7 +44,7 @@ func ws_out(ws *websocket.Conn) {
 			log.Fatal(err)
 		}
 		//log.Println("Sending:" + so)
-		ws.Write([]byte(so))
+		websocket.Message.Send(ws,so)
 
 		if err != nil {
 			log.Fatal(err)
