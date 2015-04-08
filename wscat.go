@@ -6,6 +6,7 @@ import "golang.org/x/net/websocket"
 import "log"
 import "net/url"
 import "strings"
+import "bufio"
 
 func ws_in(ws *websocket.Conn) {
 
@@ -37,9 +38,11 @@ func ws_in(ws *websocket.Conn) {
 }
 
 func ws_out(ws *websocket.Conn) {
+	bufstdin := bufio.NewReader(os.Stdin)
 	for true {
 		var so string
-		_, err := fmt.Scanf("%s\n", &so)
+		//_, err := fmt.Scanf("%[^\n]s\n", &so)
+		so, err := bufstdin.ReadString('\n')
 		if err != nil {
 			log.Fatal(err)
 		}
